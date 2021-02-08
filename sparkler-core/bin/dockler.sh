@@ -68,7 +68,7 @@ fetch_image() {
 image_id=`docker images -q "$docker_tag" | head -1`
 if [[ -z "${image_id// }" ]]; then
      echo "Cant find docker image $docker_tag. Going to Fetch it"
-     # build_image;
+    #  build_image;
      fetch_image
      image_id=`docker images -q "$docker_tag" | head -1`
 fi
