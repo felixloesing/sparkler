@@ -93,6 +93,7 @@ class SparklerJob(val id: String,
     this(id, conf, JobUtil.newSegmentId())
   }
 
+  // Mingyu Cui: creates service/SolrProxy from newSolrClient()
   def newCrawlDbSolrClient(): SolrProxy = {
     new SolrProxy(newSolrClient())
   }

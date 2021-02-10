@@ -66,6 +66,7 @@ class Injector extends CliTool {
 
   @Option(name = "-cdb", aliases = Array("--crawldb"),
     usage = "Crawdb URI.")
+  // Mingyu Cui: gets "CRAWLDB" in SparklerConfiguration as String
   var sparkSolr: String = conf.get(Constants.key.CRAWLDB).asInstanceOf[String]
 
   @Option(name = "-co", aliases = Array("--config-override"),
@@ -77,6 +78,7 @@ class Injector extends CliTool {
     if (configOverride != ""){
       conf.overloadConfig(configOverride.mkString(" "));
     }
+    // Mingyu Cui: puts <uri, sparkSolr> into api/.../Sparker/SparklerConfiguration Map
     if (!sparkSolr.isEmpty) {
       val uri = conf.asInstanceOf[java.util.HashMap[String, String]]
       uri.put("crawldb.uri", sparkSolr)
@@ -85,6 +87,7 @@ class Injector extends CliTool {
     if (jobId.isEmpty) {
       jobId = JobUtil.newJobId()
     }
+    // Mingyu Cui: defines model/SparklerJob with uri in conf
     val job = new SparklerJob(jobId, conf)
 
     val urls: util.Collection[String] =
@@ -109,6 +112,7 @@ class Injector extends CliTool {
     })
     LOG.info("Injecting {} seeds", seeds.size())
 
+    // Mingyu Cui: calls and runs solrClient
     val solrClient = job.newCrawlDbSolrClient()
     solrClient.addResources(seeds.iterator())
     solrClient.commitCrawlDb()

@@ -46,6 +46,7 @@ object Main extends Loggable {
     } else {
       args(0) = args(0).toLowerCase
       if (subCommands.contains(args(0))){
+        // Mingyu Cui: gets 1 of service/inject, pipeline/crawl, service/dump and invoke main() of that class
         val method = subCommands(args(0))._1.getMethod("main", args.getClass)
         method.invoke(null, args.slice(1, args.length))
       } else {

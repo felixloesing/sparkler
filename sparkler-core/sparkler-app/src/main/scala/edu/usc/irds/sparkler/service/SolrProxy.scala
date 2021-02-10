@@ -28,6 +28,7 @@ import org.apache.solr.common.SolrInputDocument
   *
   * @since 5/28/16
   */
+// Mingyu Cui: crawlDb calls library methods in SolrCilent.java
 class SolrProxy(var crawlDb: SolrClient) extends Closeable with Loggable {
 
 
