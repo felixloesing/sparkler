@@ -66,6 +66,8 @@ class Injector extends CliTool {
 
   @Option(name = "-cdb", aliases = Array("--crawldb"),
     usage = "Crawdb URI.")
+
+  // TODO: add Elasticsearch
   // Mingyu Cui: gets "CRAWLDB" in SparklerConfiguration as String
   var sparkSolr: String = conf.get(Constants.key.CRAWLDB).asInstanceOf[String]
 

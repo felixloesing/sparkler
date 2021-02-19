@@ -40,6 +40,8 @@ public interface Constants {
         @ConfigKey
         String CRAWLDB = "crawldb.uri";
 
+        // TODO: add key name for backend
+
         // Apache Spark Properties
         @ConfigKey
         String SPARK_MASTER = "spark.master";
@@ -118,6 +120,7 @@ public interface Constants {
         }
     }
 
+    // Mingyu: default config filename
     interface file {
         String SPARKLER_DEFAULT = "sparkler-default.yaml";
     }

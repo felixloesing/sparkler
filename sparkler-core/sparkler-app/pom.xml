@@ -98,6 +98,13 @@
            <version>${kafka.version}</version>
          </dependency>
 
+        <!-- TODO: Mingyu: extract version -->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>7.11.1</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.apache.solr</groupId>
