@@ -26,7 +26,7 @@ FROM openjdk:13
 # Setting Maven Version that needs to be installed
 ARG MAVEN_VERSION=3.6.3
 ARG ELASTICSEARCH_VERSION=7.11.1
-ARG KIBANA_Version=7.11.1
+ARG KIBANA_VERSION=7.11.1
 
 ENV MAVEN_VERSION=${MAVEN_VERSION}
 ENV M2_HOME /usr/share/maven
@@ -52,12 +52,12 @@ RUN curl -fsSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/bina
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
 ## Setup Elasticsearch
-RUN wget wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$ELASTICSEARCH_VERSION-linux-x86_64.tar.gz -O /data/elasticsearch.tgz && \
+RUN wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$ELASTICSEARCH_VERSION-linux-x86_64.tar.gz -O /data/elasticsearch.tgz && \
     cd /data/ && tar xzf /data/elasticsearch.tgz && \
     mv /data/elasticsearch-* /data/elasticsearch && rm /data/elasticsearch.tgz
 
 ## Setup Kibana
-RUN wget wget https://artifacts.elastic.co/downloads/kibana/kibana-$KIBANA_VERSION-linux-x86_64.tar.gz -O /data/kibana.tgz && \
+RUN wget https://artifacts.elastic.co/downloads/kibana/kibana-$KIBANA_VERSION-linux-x86_64.tar.gz -O /data/kibana.tgz && \
     cd /data/ && tar xzf /data/kibana.tgz && \
     mv /data/kibana-* /data/kibana && rm /data/kibana.tgz
 
