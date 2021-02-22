@@ -17,6 +17,9 @@
 
 ##################### General Properties ################################
 
+# Crawler. Default: solr
+crawldb.backend: elasticsearch
+
 # Crawl Database URL. Stores crawl metadata and status updates.
 # Type: String. Default: http://localhost:8983/solr/crawldb
 # for standalone server

@@ -66,7 +66,12 @@ class Injector extends CliTool {
 
   @Option(name = "-cdb", aliases = Array("--crawldb"),
     usage = "Crawdb URI.")
-  var sparkSolr: String = conf.get(Constants.key.CRAWLDB).asInstanceOf[String]
+  var crawldbURI: String = conf.get(Constants.key.CRAWLDB).asInstanceOf[String]
+
+  // Specifies Crawdb Backend. Default: solr
+  @Option(name = "-cdbbe", aliases = Array("--crawldb-backend"),
+    usage = "Crawdb Backend.")
+  var crawldbBackend: String = conf.get(Constants.key.CRAWLDB_BACKEND).asInstanceOf[String]
 
   @Option(name = "-co", aliases = Array("--config-override"),
     handler = classOf[StringArrayOptionHandler],
@@ -77,10 +82,22 @@ class Injector extends CliTool {
     if (configOverride != ""){
       conf.overloadConfig(configOverride.mkString(" "));
     }
-    if (!sparkSolr.isEmpty) {
-      val uri = conf.asInstanceOf[java.util.HashMap[String, String]]
-      uri.put("crawldb.uri", sparkSolr)
+
+    if (!crawldbURI.isEmpty) {  // if -cdb specified in CLI
+      val confMap = conf.asInstanceOf[java.util.HashMap[String, String]]
+      confMap.put(Constants.key.CRAWLDB, crawldbURI)  // overwrite setting in config file
     }
+
+    if(crawldbBackend == null) {  // if crawldb.backend NOT in config file and NOT in CLI
+      crawldbBackend = "solr"  // use default value "solr"
+    }
+    if (!crawldbBackend.isEmpty) {  // if -cdbbe specified in CLI or is "solr"
+      val confMap = conf.asInstanceOf[java.util.HashMap[String, String]]
+      confMap.put(Constants.key.CRAWLDB_BACKEND, crawldbBackend)  // overwrite setting in config file
+    }
+
+//    debug print: OK w/wo config file and CLI
+//    println("crawldbBackend: " + crawldbBackend)
 
     if (jobId.isEmpty) {
       jobId = JobUtil.newJobId()

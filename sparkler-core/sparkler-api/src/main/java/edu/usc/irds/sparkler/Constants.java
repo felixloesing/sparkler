@@ -36,6 +36,10 @@ public interface Constants {
         @ConfigKey
         String UUID_KEY = "sparkler.conf.uuid";
 
+        // Crawldb Backend
+        @ConfigKey
+        String CRAWLDB_BACKEND = "crawldb.backend";
+
         // General Properties
         @ConfigKey
         String CRAWLDB = "crawldb.uri";
