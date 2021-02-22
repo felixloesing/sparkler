@@ -69,14 +69,23 @@ COPY sparkler-deployment/docker/scripts/start.singleContainer.dev.sh /data/start
 RUN ["chmod", "+x", "/data/start.dev.sh"]
 
 # add elasticsearch, kibana, and sparkler to path
-RUN ["ln", "-s", "/data/solr/bin/elasticsearch", "/usr/bin/elasticsearch"]
-RUN ["ln", "-s", "/data/solr/bin/kibana", "/usr/bin/kibana"]
+RUN ["ln", "-s", "/data/elasticsearch/bin/elasticsearch", "/usr/bin/elasticsearch"]
+RUN ["ln", "-s", "/data/kibana/bin/kibana", "/usr/bin/kibana"]
 RUN ["ln", "-s", "/data/sparkler-core/bin/sparkler.sh", "/usr/bin/sparkler"]
 
 # configure welcome message
 COPY sparkler-deployment/docker/scripts/greeting.singleContainer.dev.sh /usr/local/bin/greeting.dev.sh
 RUN chmod +x /usr/local/bin/greeting.dev.sh
 RUN echo "sh /usr/local/bin/greeting.dev.sh" >> /root/.bashrc
+
+EXPOSE 9200
+EXPOSE 5601
+
+RUN adduser elastic
+RUN chown -R elastic:elastic elasticsearch/
+RUN chown -R elastic:elastic kibana/
+
+USER elastic
 
 # Define default command
 CMD ["/data/start.dev.sh"]
