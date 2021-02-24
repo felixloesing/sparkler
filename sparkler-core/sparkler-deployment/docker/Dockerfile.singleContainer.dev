@@ -84,6 +84,7 @@ EXPOSE 5601
 RUN adduser elastic
 RUN chown -R elastic:elastic elasticsearch/
 RUN chown -R elastic:elastic kibana/
+RUN chown -R elastic:elastic start.dev.sh
 
 USER elastic
 
