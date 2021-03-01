@@ -18,12 +18,13 @@
 ##################### General Properties ################################
 
 # Crawler. Default: solr
-crawldb.backend: elasticsearch
+#crawldb.backend: elasticsearch #https://stackoverflow.com/questions/50861456/get-values-from-a-yaml-file-into-pom-xml
 
 # Crawl Database URL. Stores crawl metadata and status updates.
 # Type: String. Default: http://localhost:8983/solr/crawldb
 # for standalone server
-crawldb.uri: http://localhost:8983/solr/crawldb
+#crawldb.uri: http://localhost:8983/solr/crawldb
+crawldb.uri: http://localhost:9200
 
 # for quick test crawls using embedded solr
 #crawldb.uri: file://conf/solr/crawldb

@@ -68,9 +68,9 @@ class Injector extends CliTool {
     usage = "Crawdb URI.")
   var crawldbURI: String = conf.get(Constants.key.CRAWLDB).asInstanceOf[String]
 
-  // Specifies Crawdb Backend. Default: solr
-  @Option(name = "-cdbbe", aliases = Array("--crawldb-backend"),
-    usage = "Crawdb Backend.")
+//  // Specifies Crawdb Backend. Default: solr
+//  @Option(name = "-cdbbe", aliases = Array("--crawldb-backend"),
+//    usage = "Crawdb Backend.")
   var crawldbBackend: String = conf.get(Constants.key.CRAWLDB_BACKEND).asInstanceOf[String]
 
   @Option(name = "-co", aliases = Array("--config-override"),
